@@ -1,3 +1,4 @@
+const { createCanvas } = require('canvas');
 export default async (req, res) => {
   if (req.method === 'POST') {
     const { username } = req.body;
