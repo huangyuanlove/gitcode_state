@@ -1,6 +1,6 @@
-module.exports = (req, res) => {
-  res.status(200).json({ 
-    message: 'Hello from Vercel!',
-    method: req.method 
-  });
+const axios = require('axios');
+module.exports = async (req, res) => {
+    const { userName } = req.query
+  const response = await axios.get(`https://api.gitcode.com/api/v5/users/${userName}`);
+  res.json(response.data);
 };
