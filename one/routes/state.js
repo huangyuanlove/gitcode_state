@@ -10,7 +10,15 @@ import {
   getCardColors,
   kFormatter,
   measureText,
+  CONSTANTS,
+  parseArray,
+  parseBoolean,
+  renderError,
 } from "./cards/common/utils.js";
+
+import { isLocaleAvailable } from "./translations.js";
+
+
 var router = express.Router();
 
 /* GET home page. */
@@ -69,6 +77,25 @@ router.get('/', function (req, res, next) {
     rank: { level: "C", percentile: 100 },
   };
 
+
+const showStats = parseArray(show);
+
+
+    let cacheSeconds = clampValue(
+      parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
+      CONSTANTS.TWELVE_HOURS,
+      CONSTANTS.TWO_DAY,
+    );
+    cacheSeconds = process.env.CACHE_SECONDS
+      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
+      : cacheSeconds;
+
+    // res.setHeader(
+    //   "Cache-Control",
+    //   `max-age=${cacheSeconds}, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    // );
+
+
   const { titleColor, iconColor, textColor, bgColor, borderColor, ringColor } =
     getCardColors({
       title_color,
@@ -80,40 +107,12 @@ router.get('/', function (req, res, next) {
       theme,
     });
 
-  // const card = new Card({
-  //   customTitle: custom_title,
-  //   defaultTitle: statItems.length
-  //     ? i18n.t("statcard.title")
-  //     : i18n.t("statcard.ranktitle"),
-  //   width,
-  //   height,
-  //   border_radius,
-  //   colors: {
-  //     titleColor,
-  //     textColor,
-  //     iconColor,
-  //     bgColor,
-  //     borderColor,
-  //   },
-  // });
-
-
-  // res.send(card.render(`
-  //   ${rankCircle}
-  //   <svg x="0" y="0">
-  //     ${flexLayout({
-  //       items: statItems,
-  //       gap: lheight,
-  //       direction: "column",
-  //     }).join("")}
-  //   </svg>
-  // `))
+console.error(`getCardColors result,title_color=${title_color},text_color=${text_color},icon_color=${icon_color},bg_color=${bg_color},border_color=${border_color},ring_color=${ring_color},theme=${theme}`)
 
 
   try {
-   
-    res.send(
-      renderStatsCard(stats, {
+
+    let result =       renderStatsCard(stats, {
         hide: parseArray(hide),
         show_icons: parseBoolean(show_icons),
         hide_title: parseBoolean(hide_title),
@@ -137,14 +136,24 @@ router.get('/', function (req, res, next) {
         disable_animations: parseBoolean(disable_animations),
         rank_icon,
         show: showStats,
-      }),
+      });
+
+
+
+
+  
+    res.send(
+ result
     );
   } catch (err) {
-    res.setHeader(
-      "Cache-Control",
-      `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${CONSTANTS.ERROR_CACHE_SECONDS
-      }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
-    ); // Use lower cache period for errors.
+    console.log("res.send error")
+     console.log(err.message)
+      console.log( err.secondaryMessage)
+    // res.setHeader(
+    //   "Cache-Control",
+    //   `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${CONSTANTS.ERROR_CACHE_SECONDS
+    //   }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    // ); 
     return res.send(
       renderError(err.message, err.secondaryMessage, {
         title_color,

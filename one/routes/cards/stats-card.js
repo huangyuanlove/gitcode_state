@@ -200,6 +200,7 @@ const getStyles = ({
  * @returns {string} The stats card SVG object.
  */
 const renderStatsCard = (stats, options = {}) => {
+  console.error("renderStatsCard start")
   const {
     name,
     totalStars,
@@ -214,6 +215,7 @@ const renderStatsCard = (stats, options = {}) => {
     contributedTo,
     rank,
   } = stats;
+
   const {
     hide = [],
     show_icons = false,
@@ -240,7 +242,7 @@ const renderStatsCard = (stats, options = {}) => {
     show = [],
   } = options;
 
-  const lheight = parseInt(String(line_height), 10);
+const lheight = parseInt(String(line_height), 10);
  console.error(`-----${lheight} ----`)
   // returns theme based colors with proper overrides and defaults
   const { titleColor, iconColor, textColor, bgColor, borderColor, ringColor } =
@@ -264,7 +266,7 @@ const renderStatsCard = (stats, options = {}) => {
 
   // Meta data for creating text nodes with createTextNode function
   const STATS = {};
-
+  console.log("renderStatsCard const STATS = {};")
   STATS.stars = {
     icon: icons.star,
     label: i18n.t("statcard.totalstars"),
