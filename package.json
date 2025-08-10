@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "gitcode state",
   "main": "index.js",
+  
+  "type":"module",
   "scripts": {
-    "start": "node api/index.js",
+  "start": "node ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,7 +17,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "axios": "^1.11.0",
+    "emoji-name-map": "^2.0.3",
     "express": "^5.1.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "word-wrap": "^1.2.5"
   }
 }
