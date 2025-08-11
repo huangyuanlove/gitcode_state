@@ -1,24 +1,20 @@
 
 import { renderStatsCard } from "./cards/stats-card.js";
 import {
-  CustomError,
   clampValue,
-  flexLayout,
   getCardColors,
-  kFormatter,
-  measureText,
   CONSTANTS,
   parseArray,
   parseBoolean,
   renderError,
 } from "./cards/common/utils.js";
-import { getUserInfo } from "./cards/fetchers/user_info_fetcher.js";
+
 import getRepository from "./cards/fetchers/repository_fetcher.js";
 
 
 
 export default async (req, res) => {
-    res.setHeader("Content-Type", "image/svg+xml");
+  res.setHeader("Content-Type", "image/svg+xml");
   res.setHeader(
     "Cache-Control",
     `max-age=10, s-maxage=10, stale-while-revalidate=86400`
@@ -69,7 +65,13 @@ export default async (req, res) => {
     rank: { level: "C", percentile: 100 },
   };
 
-  let userInfo = await getUserInfo({ username, access_token });
+
+
+  let requestUrl = `https://api.gitcode.com/api/v5/users/${username}?access_token=${access_token}`
+  let result = await axios.get(requestUrl);
+
+
+  let userInfo = result.data
 
   if (userInfo) {
     stats.name = userInfo["name"];
@@ -147,8 +149,7 @@ export default async (req, res) => {
     console.log(err.secondaryMessage);
     res.setHeader(
       "Cache-Control",
-      `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
-        CONSTANTS.ERROR_CACHE_SECONDS
+      `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${CONSTANTS.ERROR_CACHE_SECONDS
       }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`
     );
     return res.send(

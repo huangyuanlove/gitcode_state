@@ -29,7 +29,7 @@ const getRepository = async ({ userName, access_token }) => {
   return allRepository;
 };
 
-const loadRepository = async ({ page, access_token }) => {
+async function  loadRepository({ page, access_token }){
   console.log(`正在获取第${page}页仓库`);
   let requestUrl = "https://api.gitcode.com/api/v5/user/repos";
   let params = {
@@ -40,6 +40,7 @@ const loadRepository = async ({ page, access_token }) => {
   };
   let result = await axios.get(requestUrl, { params });
   return result.data;
-};
+}
+
 
 export default getRepository;
