@@ -17,9 +17,8 @@ import getRepository from "./cards/fetchers/repository_fetcher.js";
 
 var router = express.Router();
 
-/* GET home page. */
-router.get("/", async function (req, res, next) {
-  res.setHeader("Content-Type", "image/svg+xml");
+export default async (req, res) => {
+    res.setHeader("Content-Type", "image/svg+xml");
   res.setHeader(
     "Cache-Control",
     `max-age=10, s-maxage=10, stale-while-revalidate=86400`
@@ -55,7 +54,6 @@ router.get("/", async function (req, res, next) {
     show,
   } = req.query;
 
-
   const stats = {
     name: username,
     totalPRs: 0,
@@ -80,13 +78,10 @@ router.get("/", async function (req, res, next) {
   if (Array.isArray(allRepository)) {
     allRepository.forEach((value) => {
       //排除 fork 的仓库
-      if(value['fork']){
-
-      }else{
+      if (value["fork"]) {
+      } else {
         stats.totalStars += parseInt(value["stargazers_count"]);
       }
-
-     
     });
   }
 
@@ -166,6 +161,5 @@ router.get("/", async function (req, res, next) {
       })
     );
   }
-});
+};
 
-export default router;
