@@ -118,3 +118,8 @@ export type UserInfo = {
   following:number;
 
 }
+export type Lang = {
+  name: string;
+  color: string;
+  size: number;
+};

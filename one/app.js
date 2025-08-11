@@ -14,7 +14,8 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 import usersRouter from './routes/users.js';
-import stateRouter from './routes/state.js'
+import stateRouter from './routes/state.js';
+import languageRouter from './routes/language.js'
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
 app.use('/states', stateRouter);
+app.use('/language', languageRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

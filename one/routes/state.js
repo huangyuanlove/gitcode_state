@@ -55,7 +55,6 @@ router.get("/", async function (req, res, next) {
     show,
   } = req.query;
 
-
   const stats = {
     name: username,
     totalPRs: 0,
@@ -77,16 +76,20 @@ router.get("/", async function (req, res, next) {
     stats.name = userInfo["name"];
   }
   let allRepository = await getRepository({ username, access_token });
+  let languageMap = {};
   if (Array.isArray(allRepository)) {
     allRepository.forEach((value) => {
       //排除 fork 的仓库
-      if(value['fork']){
-
-      }else{
+      if (value["fork"]) {
+      } else {
         stats.totalStars += parseInt(value["stargazers_count"]);
+        let language = value["language"];
+        if (languageMap[language]) {
+          languageMap[language]++;
+        } else {
+          languageMap[language] = 1;
+        }
       }
-
-     
     });
   }
 

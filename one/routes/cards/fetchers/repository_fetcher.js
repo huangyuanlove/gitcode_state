@@ -1,5 +1,5 @@
 import axios from "axios";
-const per_page = 5;
+const per_page = 20;
 
 const getRepository = async ({ userName, access_token }) => {
   console.log(`getRepository  ${userName}   ${access_token}`);
