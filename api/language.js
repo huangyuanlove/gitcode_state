@@ -1,4 +1,4 @@
-import express from "express";
+
 import getRepository from "./cards/fetchers/repository_fetcher.js";
 import { renderTopLanguages } from "./cards/top-languages-card.js";
 import {
@@ -10,9 +10,8 @@ import {
 
 import { isLocaleAvailable } from "./translations.js";
 
-var router = express.Router();
-
-router.get("/", async function (req, res, next) {
+export default async (req, res) => {
+  
   const {
     username,
     access_token,
@@ -193,6 +192,5 @@ router.get("/", async function (req, res, next) {
       })
     );
   }
-});
+}
 
-export default router;

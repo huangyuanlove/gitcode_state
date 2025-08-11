@@ -1,4 +1,4 @@
-import express from "express";
+
 import { renderStatsCard } from "./cards/stats-card.js";
 import {
   CustomError,
@@ -15,7 +15,7 @@ import {
 import { getUserInfo } from "./cards/fetchers/user_info_fetcher.js";
 import getRepository from "./cards/fetchers/repository_fetcher.js";
 
-var router = express.Router();
+
 
 export default async (req, res) => {
     res.setHeader("Content-Type", "image/svg+xml");
