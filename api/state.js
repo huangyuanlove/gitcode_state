@@ -68,10 +68,12 @@ export default async (req, res) => {
 
   //默认取环境变量中的 token
   let env_gitcode_token = process.env.gitcode_token
+
   if(env_gitcode_token){
-   
+     console.log("取环境变量中的 token " + env_gitcode_token);
   }else{
     env_gitcode_token = access_token;
+      console.log("环境变量中没有token，取链接中的 token" + access_token);
   }
 
   let requestUrl = `https://api.gitcode.com/api/v5/users/${username}?access_token=${env_gitcode_token}`
