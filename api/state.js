@@ -1,4 +1,3 @@
-
 import { renderStatsCard } from "./cards/stats-card.js";
 import {
   clampValue,
@@ -11,7 +10,6 @@ import {
 
 import getRepository from "./cards/fetchers/repository_fetcher.js";
 import axios from "axios";
-
 
 export default async (req, res) => {
   res.setHeader("Content-Type", "image/svg+xml");
@@ -65,30 +63,25 @@ export default async (req, res) => {
     rank: { level: "C", percentile: 100 },
   };
 
-
-  //默认取环境变量中的 token
-  let env_gitcode_token = process.env.gitcode_token
-
-  if(env_gitcode_token){
-     console.log("取环境变量中的 token " + env_gitcode_token);
-  }else{
-    env_gitcode_token = access_token;
-      console.log("环境变量中没有token，取链接中的 token" + access_token);
+  if (access_token) {
+     console.log("请求链接中有token " + access_token);
+  } else {
+    //默认取环境变量中的 token
+    let env_gitcode_token = process.env.gitcode_token;
+    if (env_gitcode_token) {
+      access_token = env_gitcode_token;
+      console.log("取环境变量中的 token " + env_gitcode_token);
+    }
   }
 
-  let requestUrl = `https://api.gitcode.com/api/v5/users/${username}?access_token=${env_gitcode_token}`
+  let requestUrl = `https://api.gitcode.com/api/v5/users/${username}?access_token=${access_token}`;
   let result = await axios.get(requestUrl);
 
-
-  let userInfo = result.data
+  let userInfo = result.data;
 
   if (userInfo) {
     stats.name = userInfo["name"];
   }
-
-
-  console.log(JSON.stringify(process.env));
-
 
   let allRepository = await getRepository({ username, access_token });
   if (Array.isArray(allRepository)) {
@@ -163,7 +156,8 @@ export default async (req, res) => {
     console.log(err.secondaryMessage);
     res.setHeader(
       "Cache-Control",
-      `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${CONSTANTS.ERROR_CACHE_SECONDS
+      `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
+        CONSTANTS.ERROR_CACHE_SECONDS
       }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`
     );
     return res.send(
@@ -177,4 +171,3 @@ export default async (req, res) => {
     );
   }
 };
-
