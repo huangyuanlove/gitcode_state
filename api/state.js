@@ -66,8 +66,15 @@ export default async (req, res) => {
   };
 
 
+  //默认取环境变量中的 token
+  let env_gitcode_token = process.env.gitcode_token
+  if(env_gitcode_token){
+   
+  }else{
+    env_gitcode_token = access_token;
+  }
 
-  let requestUrl = `https://api.gitcode.com/api/v5/users/${username}?access_token=${access_token}`
+  let requestUrl = `https://api.gitcode.com/api/v5/users/${username}?access_token=${env_gitcode_token}`
   let result = await axios.get(requestUrl);
 
 
@@ -77,10 +84,7 @@ export default async (req, res) => {
     stats.name = userInfo["name"];
   }
 
-  let env_gitcode_token = process.env.gitcode_token
-  if(env_gitcode_token){
-    stats.name = env_gitcode_token;
-  }
+
   console.log(JSON.stringify(process.env));
 
 
