@@ -74,6 +74,14 @@ export default async (req, res) => {
   if (userInfo) {
     stats.name = userInfo["name"];
   }
+
+  let env_gitcode_token = process.env.gitcode_token
+  if(env_gitcode_token){
+    stats.name = env_gitcode_token;
+  }
+  console.log(JSON.stringify(process.env));
+
+
   let allRepository = await getRepository({ username, access_token });
   if (Array.isArray(allRepository)) {
     allRepository.forEach((value) => {
