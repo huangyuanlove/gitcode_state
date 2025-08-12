@@ -70,7 +70,7 @@ export default async (req, res) => {
     let env_gitcode_token = process.env.gitcode_token;
     if (env_gitcode_token) {
       access_token = env_gitcode_token;
-      console.log("取环境变量中的 token " + env_gitcode_token);
+      console.log("取环境变量中的 token " + access_token);
     }
   }
 
