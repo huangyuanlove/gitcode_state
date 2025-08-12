@@ -38,7 +38,7 @@ export default async (req, res) => {
     //默认取环境变量中的 token
     let env_username = process.env.username;
     if (env_username) {
-      username = env_gitcode_token;
+      username = env_username;
       console.log("取环境变量中的 username " + username);
     }
   }
