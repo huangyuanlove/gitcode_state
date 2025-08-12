@@ -12,9 +12,35 @@ import { isLocaleAvailable } from "./translations.js";
 
 export default async (req, res) => {
   
+
+
+  let {access_token} = req.query
+
+  if (access_token) {
+     console.log("language 请求链接中有token " + access_token);
+  } else {
+    //默认取环境变量中的 token
+    let env_gitcode_token = process.env.gitcode_token;
+    if (env_gitcode_token) {
+      access_token = env_gitcode_token;
+      console.log("language 取环境变量中的 token " + access_token);
+    }
+  }
+  let { username} = req.query;
+  if (username) {
+     console.log("language 请求链接中有username " + username);
+  } else {
+    //默认取环境变量中的 token
+    let env_username = process.env.username;
+    if (env_username) {
+      username = env_username;
+      console.log("language  取环境变量中的 username " + username);
+    }
+  }
+
+
+
   const {
-    username,
-    access_token,
     hide,
     hide_title,
     hide_border,
