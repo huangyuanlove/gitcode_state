@@ -2,50 +2,54 @@
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitCode Readme Stats" />
  <h2 align="center">GitCode Readme Stats</h2>
  <p align="center">在你的 README 中获取动态生成的 GitCode 统计信息！</p>
-  <p align="center">基于 <a href='https://github.com/anuraghazra/github-readme-stats'>github-readme-stats</a> 项目做的修改</p>
+ <p align="center">基于 <a href='https://github.com/anuraghazra/github-readme-stats'>github-readme-stats</a> 项目做的修改</p>
 </p>
 
-# 提示
+# 提示 <!-- omit in toc -->
 由于 gitcode 开放接口有限，无法完全实现原项目中的所有功能。
 * 目前只做了展示所有 star 数量，没有进行等级计算。
 * 热门语言修改为了统计所有仓库中的编程语言占用比例。
+* 带有删除线的功能均未实现
+
+# 前置工作 <!-- omit in toc -->
+由于 GitCode 开放接口访问需要 `access_token`,因此需要在`个人设置`-->`访问令牌`中创建一个只读的访问令牌(后面称为 access_token或者 token)。
+如果直接使用他人提供的链接，会有暴漏 token 的风险，因此建议自己部署一下服务，将 token 和 username写到环境变量中。
+
+本项目提供的链接为 **https://gitcode-state.vercel.app/api/**，如果使用本项目提供的链接，则需要在链接末尾拼接`username=xxx&access_token=yyy`,将 xxx 替换为自己的 gitcode 用户名(**需要用户名而非昵称**)，yyy 替换为自己的 token。
+如果自己部署服务，可以将`username` 和`access_token`写入环境变量中，对应的 key 为`gitcode_token`和`username`，然后替换一下链接就行，后面参数是通用的。
+
+由于`vercel`无法从`gitcode`获取代码，我们可以从[github](https://github.com/huangyuanlove/gitcode_state)上`fork`本仓库到自己的账号下进行部署
 
 # 特性 <!-- omit in toc -->
 
-- [提示](#提示)
+
+
 - [GitCode 统计卡片](#gitcode-统计卡片)
     - [隐藏指定统计](#隐藏指定统计)
-    - [将私人项目贡献添加到总提交计数中](#将私人项目贡献添加到总提交计数中)
+    - [~~将私人项目贡献添加到总提交计数中~~](#将私人项目贡献添加到总提交计数中)
     - [显示图标](#显示图标)
     - [主题](#主题)
       - [所有现有主题](#所有现有主题)
     - [自定义](#自定义)
         - [bg\_color 渐变](#bg_color-渐变)
       - [统计卡片专属选项:](#统计卡片专属选项)
-      - [Repo 卡片专属选项:](#repo-卡片专属选项)
+      - [~~Repo 卡片专属选项~~:](#repo-卡片专属选项)
       - [语言卡片专属选项:](#语言卡片专属选项)
-- [热门语言卡片](#热门语言卡片)
+- [主要使用的编程语言](#主要使用的编程语言)
     - [使用细则](#使用细则)
     - [隐藏指定语言](#隐藏指定语言)
     - [紧凑的语言卡片布局](#紧凑的语言卡片布局)
-    - [Demo](#demo)
     - [全部 Demos](#全部-demos)
-    - [快速提示 (对齐 Repo 卡片)](#快速提示-对齐-repo-卡片)
   - [自己部署](#自己部署)
       - [查看分步视频教程 作者：@codeSTACKr](#查看分步视频教程-作者codestackr)
-  - [:sparkling\_heart: 支持这个项目](#sparkling_heart-支持这个项目)
 
 # GitCode 统计卡片
 
 将这行代码复制到你的 markdown 文件中，就是如此简单！
 
-更改 `?username=` 的值为你的 GitHub 用户名。
-
 ```md
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+![huangyuanlove's gitcode stats](https://gitcode-state.vercel.app/api/state)
 ```
-
-_注: 等级基于用户的统计信息计算得出，详见 [src/calculateRank.js](../src/calculateRank.js)_
 
 ### 隐藏指定统计
 
@@ -54,10 +58,10 @@ _注: 等级基于用户的统计信息计算得出，详见 [src/calculateRank.
 > 选项：`&hide=stars,commits,prs,issues,contribs`
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
+![huangyuanlove's gitcode stats](https://gitcode-state.vercel.app/api/state?hide=contribs,prs)
 ```
 
-### 将私人项目贡献添加到总提交计数中
+### ~~将私人项目贡献添加到总提交计数中~~
 
 你可以使用参数 `?count_private=true` 把私人贡献计数添加到总提交计数中。
 
@@ -66,7 +70,7 @@ _注：如果你是自己部署本项目，私人贡献将会默认被计数，�
 > 选项: `&count_private=true`
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
+![huangyuanlove's gitcode stats](https://gitcode-state.vercel.app/api/state?count_private=true)
 ```
 
 ### 显示图标
@@ -74,7 +78,7 @@ _注：如果你是自己部署本项目，私人贡献将会默认被计数，�
 如果想要显示图标，你可以调用 `show_icons=true` 参数，像这样：
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
+![huangyuanlove's gitcode stats](https://gitcode-state.vercel.app/api/state?show_icons=true)
 ```
 
 ### 主题
@@ -84,20 +88,17 @@ _注：如果你是自己部署本项目，私人贡献将会默认被计数，�
 通过调用 `?theme=THEME_NAME` 参数，像这样：
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![huangyuanlove's gitcode stats](https://gitcode-state.vercel.app/api/state?show_icons=true&theme=radical)
 ```
 
 #### 所有现有主题
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
-<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
-
-你可以预览[所有可用主题](../themes/README.md)或者签出[主题配置文件](../themes/index.js), 而且如果你喜欢, **你也可以贡献新的主题** :D
 
 ### 自定义
 
-你可以通过使用 URL 参数的方式，为你的 `Stats Card` 或 `Repo Card` 自定义样式。
+你可以通过使用 URL 参数的方式，为你的 `Stats Card` 或 ~~`Repo Card`~~ 自定义样式。
 
 常用选项：
 
@@ -130,7 +131,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `count_private` - 统计私人提交 _(boolean)_
 - `line_height` - 设置文本之间的行高 _(number)_
 
-#### Repo 卡片专属选项:
+#### ~~Repo 卡片专属选项~~:
 
 - `show_owner` - 显示 Repo 的所有者名字 _(boolean)_
 
@@ -148,20 +149,16 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 ---
 
 
-# 热门语言卡片
+# 主要使用的编程语言
 
-热门语言卡片显示了 GitHub 用户常用的编程语言。
-
-_注意：热门语言并不表示我的技能水平或类似的水平，它是用来衡量用户在 github 上拥有最多代码的语言的一项指标，它是 github-readme-stats 的新特性_
+统计用户名下权限为 owner 权限的仓库中所用语言的占比
 
 ### 使用细则
 
 将此代码复制粘贴到您的 `README.md` 文件中，并修改链接。
 
-端点: `api/top-langs?username=anuraghazra`
-
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+![huangyuanlove's gitcode language](https://gitcode-state.vercel.app/api/language)
 ```
 
 ### 隐藏指定语言
@@ -169,7 +166,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 可以使用 `?hide=language1,language2` 参数来隐藏指定的语言。
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
+![huangyuanlove's gitcode language](https://gitcode-state.vercel.app/api/language?hide=javascript,html)
 ```
 
 ### 紧凑的语言卡片布局
@@ -177,121 +174,78 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 你可以使用 `&layout=compact` 参数来改变卡片的样式。
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+![huangyuanlove's gitcode language](https://gitcode-state.vercel.app/api/language?layout=compact)
 ```
 
-### Demo
-
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
-
-- 紧凑布局
-
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
-
----
 
 ### 全部 Demos
 
 - 默认
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
+![huangyuanlove's gitcode stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
 - 隐藏指定统计
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
+![huangyuanlove's gitcode stats](https://gitcode-state.vercel.app/api/state?hide=contribs,issues)
 
 - 显示图标
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
+![huangyuanlove's gitcode stats](https://gitcode-state.vercel.app/api/state?hide=issues&show_icons=true)
 
-- 包含全部提交
+- ~~包含全部提交~~
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+![huangyuanlove's gitcode stats](https://gitcode-state.vercel.app/api/state?include_all_commits=true)
 
 - 主题
 
 从[默认主题](#主题)中进行选择
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![huangyuanlove's gitcode stats](https://gitcode-state.vercel.app/api/state?show_icons=true&theme=radical)
 
 - 渐变
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
+![huangyuanlove's gitcode stats](https://gitcode-state.vercel.app/api/state?bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
 - 自定义统计卡片
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+![huangyuanlove's gitcode stats](https://github-readme-stats.vercel.app/api/?show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
-- 自定义 repo 卡片
+- ~~自定义 repo 卡片~~
 
-![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
+![Customized Card](https://github-readme-stats.vercel.app/api/pin?repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
-- 热门语言
+- 主要编程语言
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+![Top Langs](https://gitcode-state.vercel.app/api/language)
 
 ---
 
-### 快速提示 (对齐 Repo 卡片)
 
-你通常无法将图片靠边显示。为此，您可以使用以下方法：
-
-```html
-<a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
-</a>
-<a href="https://github.com/anuraghazra/convoychat">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
-</a>
-```
 
 ## 自己部署
 
 #### [查看分步视频教程 作者：@codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
-因为 GitHub 的 API 每个小时只允许 5 千次请求，我的 `https://github-readme-stats.vercel.app/api` 很有可能会触发限制。如果你将其托管在自己的 Vercel 服务器上，那么你就不必为此担心。点击 deploy 按钮来开始你的部署！
-
-注意: 从 [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 开始，我们应该能够处理超过 5 千次的请求，并且不会出现宕机问题 :D
-
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/huangyuanlove/gitcode_state)
+由于`vercel`无法从`gitcode`获取代码，我们可以从[github](https://github.com/huangyuanlove/gitcode_state)上`fork`本仓库到自己的账号下进行部署
 
 <details>
  <summary>设置 Vercel 的指导</summary>
 
 1. 前往 [vercel.com](https://vercel.com/)
-1. 点击 `Log in`
+2. 点击 `Log in`
    ![](https://files.catbox.moe/tct1wg.png)
-1. 点击 `Continue with GitHub` 通过 GitHub 进行登录
+3. 点击 `Continue with GitHub` 通过 GitHub 进行登录
    ![](https://files.catbox.moe/btd78j.jpeg)
-1. 登录 GitHub 并允许访问所有存储库（如果系统这样提示）
-1. Fork 这个仓库
-1. 返回到你的 [Vercel dashboard](https://vercel.com/dashboard)
-1. 选择 `Import Project`
+4. 登录 GitHub 并允许访问所有存储库（如果系统这样提示）
+5. Fork 这个仓库
+6. 返回到你的 [Vercel dashboard](https://vercel.com/dashboard)
+7. 选择 `Import Project`
    ![](https://files.catbox.moe/qckos0.png)
-1. 选择 `Import Git Repository`
+8. 选择 `Import Git Repository`
    ![](https://files.catbox.moe/pqub9q.png)
-1. 选择 root 并将所有内容保持不变，并且只需添加名为 PAT_1 的环境变量（如图所示），其中将包含一个个人访问令牌（PAT），你可以在[这里](https://github.com/settings/tokens/new)轻松创建（保留默认，并且只需要命名下，名字随便）
-   ![](https://files.catbox.moe/0ez4g7.png)
-1. 点击 deploy，这就完成了，查看你的域名就可使用 API 了！
+9. 选择 root 并将所有内容保持不变，并且只需添加名为 `username`和`gitcode_token` 的环境变量（如图所示）
+10. 点击 deploy，这就完成了，查看你的域名就可使用 API 了！
 
 </details>
 
-## :sparkling_heart: 支持这个项目
-
-我尽己所能地进行开源，并且我尽量回复每个在使用项目时需要帮助的人。很明显，这需要时间，但你可以免费享受这些。
-
-然而, 如果你正在使用这个项目并感觉良好，或只是想要支持我继续开发，你可以通过如下方式：
-
-- 在你的 readme 中使用 github-readme-stats 时，链接指向这里 :D
-- Star 并 分享这个项目 :rocket:
-- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - 你可以通过 PayPal 一次性捐款. 我多半会买一杯 ~~咖啡~~ 茶. :tea:
-
-谢谢！ :heart:
-
----
-
-[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](../powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
-
-欢迎贡献！ <3
-
-用 :heart: 发电，用 JavaScript 制作。

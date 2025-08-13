@@ -140,8 +140,7 @@ export default async (req, res) => {
   try {
     let result = renderStatsCard(stats, {
       hide: parseArray(hide),
-      show_icons: true,
-      // show_icons: parseBoolean(show_icons),
+      show_icons: parseBoolean(show_icons),
       hide_title: parseBoolean(hide_title),
       hide_border: parseBoolean(hide_border),
       card_width: parseInt(card_width, 10),
