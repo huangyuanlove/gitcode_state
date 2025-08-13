@@ -1,14 +1,14 @@
 
-import getRepository from "./cards/fetchers/repository_fetcher.js";
-import { renderTopLanguages } from "./cards/top-languages-card.js";
+import getRepository from "../cards/fetchers/repository_fetcher.js";
+import { renderTopLanguages } from "../cards/top-languages-card.js";
 import {
   CONSTANTS,
   parseArray,
   parseBoolean,
   renderError,
-} from "./cards/common/utils.js";
+} from "../cards/common/utils.js";
 
-import { isLocaleAvailable } from "./cards/translations.js";
+import { isLocaleAvailable } from "../cards/translations.js";
 
 export default async (req, res) => {
   

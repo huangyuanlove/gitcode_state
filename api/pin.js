@@ -1,13 +1,13 @@
-import { renderRepoCard } from "./cards/repo-card.js";
+import { renderRepoCard } from "../cards/repo-card.js";
 import {
   clampValue,
   CONSTANTS,
   parseBoolean,
   renderError,
-} from "./cards/common/utils.js";
+} from "../cards/common/utils.js";
 
-import { isLocaleAvailable } from "./cards/translations.js";
-import getRepository from "./cards/fetchers/repository_fetcher.js";
+import { isLocaleAvailable } from "../cards/translations.js";
+import getRepository from "../cards/fetchers/repository_fetcher.js";
 
 export default async (req, res) => {
   let { access_token } = req.query;

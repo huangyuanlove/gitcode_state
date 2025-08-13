@@ -1,4 +1,4 @@
-import { renderStatsCard } from "./cards/stats-card.js";
+import { renderStatsCard } from "../cards/stats-card.js";
 import {
   clampValue,
   getCardColors,
@@ -6,9 +6,9 @@ import {
   parseArray,
   parseBoolean,
   renderError,
-} from "./cards/common/utils.js";
+} from "../cards/common/utils.js";
 
-import getRepository from "./cards/fetchers/repository_fetcher.js";
+import getRepository from "../cards/fetchers/repository_fetcher.js";
 import axios from "axios";
 
 export default async (req, res) => {
