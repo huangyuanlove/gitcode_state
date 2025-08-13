@@ -208,11 +208,11 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 - 自定义统计卡片
 
-![huangyuanlove's gitcode stats](https://github-readme-stats.vercel.app/api/?show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+![huangyuanlove's gitcode stats](https://gitcode-state.vercel.app/api/state?show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
-- ~~自定义 repo 卡片~~
+- 自定义 repo 卡片
 
-![Customized Card](https://github-readme-stats.vercel.app/api/pin?repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
+![Customized Card](https://gitcode-state.vercel.app/api/pin?repo=huangyuan_xuan/gitcode_state&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
 - 主要编程语言
 
