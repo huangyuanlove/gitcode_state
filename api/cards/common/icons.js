@@ -50,4 +50,4 @@ const rankIcon = (rankIcon, rankLevel, percentile) => {
 };
 
 export { icons, rankIcon };
-export default icons;
+

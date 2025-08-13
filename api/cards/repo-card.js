@@ -14,7 +14,7 @@ import {
   createLanguageNode,
   clampValue,
 } from "./common/utils.js";
-import { repoCardLocales } from "../translations.js";
+import { repoCardLocales } from "./translations.js";
 
 const ICON_SIZE = 16;
 const DESCRIPTION_LINE_WIDTH = 59;

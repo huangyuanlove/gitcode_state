@@ -8,7 +8,7 @@ import {
   renderError,
 } from "./cards/common/utils.js";
 
-import { isLocaleAvailable } from "./translations.js";
+import { isLocaleAvailable } from "./cards/translations.js";
 
 export default async (req, res) => {
   
@@ -79,12 +79,6 @@ export default async (req, res) => {
   }
 
   try {
-    // const topLangs = await fetchTopLanguages(
-    //   username,
-    //   parseArray(exclude_repo),
-    //   size_weight,
-    //   count_weight,
-    // );
 
     let allRepository = await getRepository({ username, access_token });
     let languageCountMap = {};

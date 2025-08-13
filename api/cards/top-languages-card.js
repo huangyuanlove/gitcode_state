@@ -11,7 +11,7 @@ import {
   lowercaseTrim,
   measureText,
 } from "./common/utils.js";
-import { langCardLocales } from "../translations.js";
+import { langCardLocales } from "./translations.js";
 
 const DEFAULT_CARD_WIDTH = 300;
 const MIN_CARD_WIDTH = 280;

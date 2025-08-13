@@ -6,12 +6,11 @@ import {
   renderError,
 } from "./cards/common/utils.js";
 
-import { isLocaleAvailable } from "./translations.js";
+import { isLocaleAvailable } from "./cards/translations.js";
 import getRepository from "./cards/fetchers/repository_fetcher.js";
 
-
 export default async (req, res) => {
-let { access_token } = req.query;
+  let { access_token } = req.query;
 
   if (access_token) {
     console.log("state 请求链接中有token " + access_token);
@@ -65,25 +64,6 @@ let { access_token } = req.query;
   }
 
   try {
-    // const repoData = await fetchRepo(username, repo);
-
-    /**
- *   name: string;
-  nameWithOwner: string;
-  isPrivate: boolean;
-  isArchived: boolean;
-  isTemplate: boolean;
-  stargazers: { totalCount: number };
-  description: string;
-  primaryLanguage: {
-    color: string;
-    id: string;
-    name: string;
-  };
-  forkCount: number;
-  starCount: number;
-};
- */
 
     let repoData = {
       name: repo,
@@ -188,5 +168,4 @@ let { access_token } = req.query;
       })
     );
   }
-
-}
+};
