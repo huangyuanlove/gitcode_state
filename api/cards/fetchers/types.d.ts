@@ -8,17 +8,21 @@ export type GistData = {
 };
 
 export type RepositoryData = {
-  id:number;
-  full_name:string;
- name:string;
- stargazers_count:number;
- fork:boolean;
- private:boolean;
- public:boolean;
- language:string;
- main_repository_language:string[];
+  name: string;
+  nameWithOwner: string;
+  isPrivate: boolean;
+  isArchived: boolean;
+  isTemplate: boolean;
+  stargazers: { totalCount: number };
+  description: string;
+  primaryLanguage: {
+    color: string;
+    id: string;
+    name: string;
+  };
+  forkCount: number;
+  starCount: number;
 };
-
 export type StatsData = {
   name: string;
   totalPRs: number;
